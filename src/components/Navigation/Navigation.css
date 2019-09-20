@@ -1,0 +1,30 @@
+.navigationBar{
+    background-color: #182825;
+    padding: 15px 0;
+}
+.navLinks{
+    display: flex;
+    justify-content: space-between;
+}
+.navLogo{
+    width: 40px;
+}
+.navLinks a{
+    font-size: 20px;
+    font-weight: 700;  
+    color: #6D8EA0;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease-in-out;
+    align-self: center; 
+}
+.navLinks a:hover{
+    padding-bottom: 2px;
+    border-bottom: 3px solid #6D8EA0;  
+}
+.userCatalog{
+    border-bottom: 3px solid transparent;
+}
+.userCatalog:hover{
+    color: red;
+    border-bottom: 3px solid red;
+}
