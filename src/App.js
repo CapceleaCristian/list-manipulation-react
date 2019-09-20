@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navigation from './components/Navigation/Navigation';
+import Navigation from './Shared/Navigation/Navigation';
 import './App.css';
-import Home from './components/Home/Home';
-import Catalog from './components/Catalog/Catalog';
-import Team from './components/Team/Team';
-import Contacts from './components/Contacts/Contacts';
-import Error from './components/Error/Error';
-import HeroDetail from './components/Catalog/HeroDetail';
+import Home from './Shared/Home/Home';
+import Catalog from './Heroes/Comonents/Catalog/Catalog';
+import Team from './Shared/Team/Team';
+import Contacts from './Shared/Contacts/Contacts';
+import Error from './Shared/Error/Error';
+import HeroDetail from './Heroes/Comonents/Catalog/HeroInfo';
 
 class App extends Component {
     render() {
