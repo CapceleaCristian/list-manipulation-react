@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CatalogItems from '../CatalogItems/CatalogItems';
 import Pagination from '../Pagination/Pagination';
+import SearchBar from '../SearchBar/SearchBar';
 import './Catalog.css';
 
 const Catalog = () => {
@@ -33,11 +34,7 @@ const Catalog = () => {
         <div className="catalog-list">
             <div className="container">
                 <h1 className="catalog-title">This Catalog contains all dota2 professional teams: <span>({items.length})</span> </h1>
-                <Pagination
-                    itemsPerPage={itemsPerPage}
-                    totalItems={items.length}
-                    paginate={paginate}
-                />
+                <SearchBar />
                 <CatalogItems
                     items={currentItems}
                     loading={loading}

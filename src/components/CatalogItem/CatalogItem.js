@@ -26,7 +26,7 @@ const CatalogItem = ({ match, isLoading }) => {
                 <div className="team-single">
                     <div className="main-info">
                         <span>For other teams, go back to --> </span>
-                        <Link to="/catalog/!#">
+                        <Link to="/catalog/">
                             <button className="btn btn-dark">Catalog</button>
                         </Link>
                         <hr />
