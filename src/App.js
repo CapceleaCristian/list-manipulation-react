@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navigation from './Shared/Navigation/Navigation';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './Shared/Home/Home';
-import Catalog from './Heroes/Comonents/Catalog/Catalog';
-import Team from './Shared/Team/Team';
-import Contacts from './Shared/Contacts/Contacts';
-import Error from './Shared/Error/Error';
-import HeroDetail from './Heroes/Comonents/Catalog/HeroInfo';
+import Navigation from './components/Shared/Navigation/Navigation';
+import Home from './components/Shared/Home/Home';
+import Catalog from './components/Catalog/Catalog';
+import Team from './components/Shared/Team/Team';
+import Contacts from './components/Shared/Contacts/Contacts';
+import Error from './components/Shared/Error/Error';
+import CountryItem from './components/CatalogItem/CatalogItem';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <div>
+            <div>
+                <Router>
                     <Navigation />
                     <Switch>
                         <Route path="/" component={Home} exact />
                         <Route path="/catalog" component={Catalog} exact />
-                        <Route path="/catalog/:id" component={HeroDetail} />
+                        <Route path="/catalog/:name" component={CountryItem} exact />
                         <Route path="/team" component={Team} exact />
                         <Route path="/contacts" component={Contacts} exact />
                         <Route component={Error} />
                     </Switch>
-                </div>
-            </BrowserRouter>
+                </Router>
+            </div>
         )
     }
 }
-
-
-export default App;

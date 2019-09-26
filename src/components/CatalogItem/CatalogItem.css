@@ -1,0 +1,16 @@
+.catalog-items{
+    margin: 15px;
+}
+a.go-back{
+    text-decoration: none;
+}
+.team-single{
+    display: flex;
+    justify-content: space-between;
+}
+.main-info p{
+    font-size: 20px;
+}
+.team-single img{
+    background-color: #bdbdbd;
+}

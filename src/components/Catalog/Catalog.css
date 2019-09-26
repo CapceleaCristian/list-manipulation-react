@@ -1,0 +1,25 @@
+.catalog-title{
+    padding: 10px 0;
+}
+.team-items{
+    padding: 15px;
+}
+.team-items a{
+    display: flex;
+    justify-content: space-between;
+    color: #260082;
+}
+.team-items:nth-child(even) {
+    background: #CCC;
+    transition: all 0.5s ease-in-out;
+}
+.team-items:nth-child(odd) {
+    background: #fff;
+    transition: all 0.5s ease-in-out;
+}
+.team-items:nth-child(even):hover {
+    background: #b5b5b5;
+}
+.team-items:nth-child(odd):hover {
+    background: #f0f0f0;
+}

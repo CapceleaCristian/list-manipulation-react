@@ -51,8 +51,9 @@ module.exports = {
                     },
                 ],
             }
-        ]
+        ],
     },
+
     devServer: {
         historyApiFallback: true,
     },
@@ -60,5 +61,5 @@ module.exports = {
         new HWP({
             template: path.join(__dirname, './public/index.html')
         })
-    ]
+    ],
 }
