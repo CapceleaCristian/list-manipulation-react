@@ -9,7 +9,7 @@ const Catalog = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(2);
+    const [itemsPerPage] = useState(40);
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -22,8 +22,8 @@ const Catalog = () => {
     }, []);
 
     //Get current items
-    const firstIndex = lastIndex - itemsPerPage;
     const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
     const currentItems = items.slice(firstIndex, lastIndex);
 
     //Change page
