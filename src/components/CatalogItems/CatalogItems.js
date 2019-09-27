@@ -11,6 +11,7 @@ const CatalogItems = ({ items, loading }) => {
         <div className="catalog-items">
             <table>
                 <tr>
+                
                     <th>ID</th>
                     <th>Team Long Name</th>
                     <th>Wins</th>
