@@ -4,7 +4,9 @@ class Team extends Component {
     render() {
         return (
             <div>
-                This is Team!!
+                <div className="container">
+                    This is Team!!
+                </div>
             </div>
         )
     }

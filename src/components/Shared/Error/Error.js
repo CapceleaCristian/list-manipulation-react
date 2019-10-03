@@ -4,7 +4,9 @@ class Error extends Component {
     render() {
         return (
             <div>
-                <h1>Invalid page</h1>
+                <div className="container">
+                    <h1>Ai gresit pagina, bratan)</h1>
+                </div>
             </div>
         )
     }

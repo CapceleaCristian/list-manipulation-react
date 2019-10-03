@@ -38,3 +38,8 @@ body{
   cursor: pointer;
   font-size: 20px;
 }
+
+/* ------------------- all the css styles  */
+.total-pages {
+  margin-top: 15px;
+}

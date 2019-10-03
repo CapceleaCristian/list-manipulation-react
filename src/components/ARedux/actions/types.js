@@ -1,0 +1,6 @@
+export const FETCH_ALL_ITEMS = 'FETCH_ALL_ITEMS';
+export const FETCH_SINGLE_ITEM = 'FETCH_SINGLE_ITEM';
+
+export const SEARCH_ITEM = 'SEARCH_ITEM';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+

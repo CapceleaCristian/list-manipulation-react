@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { searchItem } from '../ARedux/actions/itemActions';
 import './SearchBar.css';
 
-const SearchBar = (props) => {
-    console.log()
-    return (
-        <div>
+class SearchBar extends Component {
+
+   //Search event set 
+   onChange = (e) => {
+      this.props.searchItem(e.target.value);
+   }
+   render() {
+      return (
+         <div>
             <div className="wrap">
-                <div className="search">
-                    <input type="text" onChange={props.handleInput} className="searchTerm" placeholder="What are you looking for?" />
-                    <button type="submit" className="searchButton" >
-                        <i className="fa fa-search" />
-                    </button>
-                </div>
+               <div className="search">
+                  <input type="text" onChange={this.onChange} className="searchTerm" placeholder="What are you looking for?" />
+                  <button type="submit" className="searchButton" >
+                     <i className="fa fa-search" />
+                  </button>
+               </div>
             </div>
-        </div>
-    )
+         </div>
+      )
+   }
 }
-export default SearchBar;
+
+const mapStatesToProps = (state) => ({
+   text: state.items.text
+})
+
+export default connect(mapStatesToProps, { searchItem })(SearchBar);
