@@ -1,5 +1,9 @@
+.page-details-info{
+    display: flex;
+    justify-content: space-between;
+}
 .catalog-title{
-    padding: 10px 0;
+    padding: 15px 0;
 }
 .team-items{
     padding: 15px;

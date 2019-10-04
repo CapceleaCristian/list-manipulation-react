@@ -11,7 +11,7 @@ export default function Navigation() {
                     <div className="navLinks">
                         <NavLink to="/"><img className="navLogo" src={logo} alt="" /></NavLink>
                         <NavLink to="/">Home</NavLink>
-                        <NavLink className="userCatalog" to="/catalog">Catalog (Click me)</NavLink>
+                        <NavLink className="userCatalog" to="/catalog">Catalog</NavLink>
                         <NavLink to="/team">Team</NavLink>
                         <NavLink to="/contacts">Contacts</NavLink>
                     </div>

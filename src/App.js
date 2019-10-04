@@ -13,7 +13,9 @@ import store from './components/ARedux/store';
 import './App.css';
 
 export default class App extends Component {
+
   render() {
+
     return (
       <Provider store={store}>
         <div>

@@ -1,23 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setCurrentPage, setPrevPage, setNextPage } from '../ARedux/actions/itemActions';
 
-const Pagination = ({ itemsPerPage, totalItems }) => {
-
-   const pageNumbers = [];
-   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-      pageNumbers.push(i);
+class Pagination extends Component {
+   constructor(props) {
+      super(props);
    }
 
-   return (
-      <nav className="total-pages centered">
-         <ul className="pagination">
-            {pageNumbers.map(number =>
-               <li key={number} className="page-item">
-                  <Link to='/catalog' className="page-link">{number}</Link>
+   render() {
+      const pageNumbers = [];
+      console.log(this.props.slicedItems / this.props.itemsPerPage)
+      for (let i = 1; i <= Math.ceil(this.props.slicedItems / this.props.itemsPerPage); i++) {
+         pageNumbers.push(i);
+      }
+      const changePage = (pageNumber) => {
+         this.props.setCurrentPage(pageNumber)
+      }
+      const prevPage = (currentPage) => {
+         if (currentPage <= 1) {
+            this.props.setNextPage(pageNumbers.length)
+         }
+         else {
+            this.props.setNextPage(currentPage - 1)
+         }
+      }
+      const nextPage = (currentPage) => {
+         if (currentPage > pageNumbers.length - 1) {
+            this.props.setNextPage(1)
+         }
+         else {
+            this.props.setNextPage(currentPage + 1)
+         }
+      }
+
+      return (
+         <nav className="total-pages centered">
+            <ul className="pagination">
+               <li className="page-item">
+                  <Link to='/catalog' onClick={() => prevPage(this.props.currentPage)} className="page-link">Prev</Link>
                </li>
-            )}
-         </ul>
-      </nav >
-   )
+               {pageNumbers.map(pageNumber =>
+                  <li key={pageNumber} className="page-item">
+                     <Link to='/catalog' onClick={() => changePage(pageNumber)} className="page-link">{pageNumber}</Link>
+                  </li>
+               )}
+               <Link to='/catalog' onClick={() => nextPage(this.props.currentPage)} className="page-link">Next</Link>
+            </ul>
+         </nav >
+      )
+   }
 }
-export default Pagination;
+
+
+const mapStateToProps = (state) => ({
+   currentPage: state.items.currentPage,
+   itemsPerPage: state.items.itemsPerPage
+});
+
+export default connect(mapStateToProps, { setCurrentPage, setPrevPage, setNextPage })(Pagination);
