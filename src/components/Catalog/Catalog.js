@@ -68,4 +68,11 @@ const mapStateToProps = (state) => ({
   sortType: state.items.sortType
 })
 
-export default connect(mapStateToProps, { fetchAllItems, searchItem, setCurrentPage, resetState })(Catalog);
+const mapDispatchToProps = { 
+  fetchAllItems, 
+  searchItem, 
+  setCurrentPage, 
+  resetState 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
