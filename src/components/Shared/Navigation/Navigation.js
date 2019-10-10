@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
-import logo from '../../../../public/logo.png';
+import endavaLogo from '../../../../public/endava-logo.png';
 
 export default function Navigation() {
     return (
@@ -9,9 +9,9 @@ export default function Navigation() {
             <nav className="navigationBar">
                 <div className="container">
                     <div className="navLinks">
-                        <NavLink to="/"><img className="navLogo" src={logo} alt="" /></NavLink>
+                        <NavLink to="/"><img className="navLogo" src={endavaLogo} alt="" /></NavLink>
                         <NavLink to="/">Home</NavLink>
-                        <NavLink className="userCatalog" to="/catalog">Catalog</NavLink>
+                        <NavLink className="userCatalog" to="/catalog">Catalog of Items</NavLink>
                         <NavLink to="/team">Team</NavLink>
                         <NavLink to="/contacts">Contacts</NavLink>
                     </div>

@@ -11,10 +11,11 @@ import './Catalog.css';
 import { fetchAllItems, searchItem, setCurrentPage, resetState } from '../ARedux/actions/itemActions';
 
 class Catalog extends Component {
-
+  //Reseting state if changes route
   componentWillUnmount() {
     this.props.resetState();
   }
+  //Fetching items
   componentDidMount() {
     this.props.fetchAllItems();
   }
@@ -27,7 +28,6 @@ class Catalog extends Component {
 
     // Get current page of items
     const lastIndex = this.props.currentPage * this.props.itemsPerPage;
-    console.log(this.props.itemsPerPage);
     const firstIndex = lastIndex - this.props.itemsPerPage;
     const slicedItems = searchedItems.slice(firstIndex, lastIndex);
 
@@ -35,21 +35,22 @@ class Catalog extends Component {
       <div className="catalog-list">
         <div className="container">
           <h1 className="catalog-title">
-            This Catalog contains all dota2 professional teams:
-           <span><strong>({searchedItems.length})</strong></span>
+            This Catalog contains all dota2 professional teams: &#160;
+            <span className="badge badge-secondary">{searchedItems.length}</span>
           </h1>
           <SearchBar />
           <SelectionForm />
           <div className="page-details-info">
-            <span>Current page is: <strong>{this.props.currentPage}</strong></span>
-            <span>Items on page: <strong>{this.props.itemsPerPage}</strong></span>
+            <span>Current page is: &#160; <span className="badge badge-primary">{this.props.currentPage}</span></span>
+            <span>Items on page: &#160; <span className="badge badge-primary">{this.props.itemsPerPage}</span></span>
+            <span>Sorted type is: &#160; <span className="badge badge-primary">{this.props.sortType}</span></span>
           </div>
           <Pagination
             itemsPerPage={this.props.itemsPerPage}
-            slicedItems={searchedItems}
-            totalItems={searchedItems.length}
+            slicedItems={slicedItems}
+            totalItems={slicedItems.length}
           />
-          <CatalogItems currentItems={searchedItems} />
+          <CatalogItems slicedItems={slicedItems} />
           <Pagination
             itemsPerPage={this.props.itemsPerPage}
             totalItems={searchedItems.length}

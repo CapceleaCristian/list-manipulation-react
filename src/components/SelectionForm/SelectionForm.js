@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './SelectionForm.css';
 
-import { setItemsPerPage, setCurrentPage } from '../ARedux/actions/itemActions';
+import { setItemsPerPage, setCurrentPage, setSortType } from '../ARedux/actions/itemActions';
 
 class SelectionForm extends Component {
 
    itemOnChange = (e) => {
       this.props.setItemsPerPage(e.target.value);
+      this.props.setSortType('none');
       this.props.setCurrentPage(1);
    }
    render() {
@@ -15,7 +16,7 @@ class SelectionForm extends Component {
          <div className="selection-form">
             <div className="input-group mb-3">
                <select onChange={this.itemOnChange} className="custom-select" id="inputGroupSelect02">
-                  <option value="0">Items on page...</option>
+                  <option value={this.props.itemsPerPage}>Items on page...</option>
                   <option value="1000">1000</option>
                   <option value="500">500</option>
                   <option value="200">200</option>
@@ -37,4 +38,4 @@ const mapStateToProps = state => ({
    itemsPerPage: state.items.itemsPerPage
 })
 
-export default connect(mapStateToProps, { setItemsPerPage, setCurrentPage })(SelectionForm);
+export default connect(mapStateToProps, { setItemsPerPage, setCurrentPage, setSortType })(SelectionForm);

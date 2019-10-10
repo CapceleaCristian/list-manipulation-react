@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CatalogItems.css';
-import { setSortedItems } from '../ARedux/actions/itemActions';
+import { setSortedItems, setCurrentPage, setSortType } from '../ARedux/actions/itemActions';
 import { connect } from 'react-redux';
 
 class CatalogItems extends Component {
@@ -10,11 +10,45 @@ class CatalogItems extends Component {
     }
 
     render() {
-        const sortBy = (e) => {
+        // Sorting by number value
+        const sortByNumber = (e) => {
             e.preventDefault();
+            this.props.setCurrentPage(1)
+            this.props.setSortType('ascending');
             const el = e.target.value;
-            const mapped = this.props.currentItems.map(i => i);
-            const sorted = mapped.sort((a, b) => a[el] - b[el]);
+            const mapped = this.props.items.map(i => i);
+            const sorted = mapped.sort((a, b) => {
+                if (this.props.sortType === 'ascending') {
+                    this.props.setSortType('descending');
+                    return b[el] - a[el];
+                }
+                else {
+                    this.props.setSortType('ascending');
+                    return a[el] - b[el];
+
+                }
+            });
+            this.props.setSortedItems(sorted);
+        }
+
+        // Sorting by name value
+        const sortByName = (e) => {
+            e.preventDefault();
+            this.props.setCurrentPage(1)
+            this.props.setSortType('ascending');
+            const el = e.target.value;
+            const mapped = this.props.items.map(i => i);
+            const sorted = mapped.sort((a, b) => {
+                if (this.props.sortType === 'ascending') {
+                    this.props.setSortType('descending');
+                    return ('' + b[el]).localeCompare(a[el]);
+                }
+                else {
+                    this.props.setSortType('ascending');
+                    return ('' + a[el]).localeCompare(b[el]);
+
+                }
+            });
             this.props.setSortedItems(sorted);
         }
 
@@ -27,17 +61,25 @@ class CatalogItems extends Component {
                                 <button
                                     type="button"
                                     value="team_id"
-                                    onClick={sortBy}
+                                    onClick={sortByNumber}
                                     className="btn btn-primary">
                                     ID
                                 </button>
                             </th>
-                            <th>Team Long Name</th>
+                            <th>
+                                <button
+                                    type="button"
+                                    value="name"
+                                    onClick={sortByName}
+                                    className="btn btn-secondary">
+                                    Team Long Name
+                                </button>
+                            </th>
                             <th>
                                 <button
                                     type="button"
                                     value="rating"
-                                    onClick={sortBy}
+                                    onClick={sortByNumber}
                                     className="btn btn-info">
                                     Rating
                                 </button>
@@ -45,8 +87,10 @@ class CatalogItems extends Component {
                             <th>
                                 <button
                                     type="button"
+                                    value="losses"
+                                    type="button"
                                     value="wins"
-                                    onClick={sortBy}
+                                    onClick={sortByNumber}
                                     className="btn btn-success">
                                     Wins
                                 </button>
@@ -55,32 +99,51 @@ class CatalogItems extends Component {
                                 <button
                                     type="button"
                                     value="losses"
-                                    onClick={sortBy}
+                                    onClick={sortByNumber}
                                     className="btn btn-danger ">
                                     Losses
                                 </button>
                             </th>
-                            <th> Short Tag</th>
+                            <th>
+                                <button
+                                    type="button"
+                                    value="last_match_time"
+                                    onClick={sortByNumber}
+                                    className="btn btn-warning">
+                                    Last match Played
+                                </button>
+                            </th>
+                            <th>
+                                <button
+                                    type="button"
+                                    value="tag"
+                                    onClick={sortByName}
+                                    className="btn btn-dark">
+                                    Short Tag
+                                </button>
+                            </th>
                         </tr>
-                        {this.props.items.map(item => (
+                        {this.props.slicedItems.map(item => (
                             <tr key={item.team_id}>
                                 <td><Link to={`/catalog/${item.team_id}`}>{item.team_id}</Link></td>
                                 <td><Link to={`/catalog/${item.team_id}`}>{item.name}</Link></td>
                                 <td>{item.rating}</td>
                                 <td>{item.wins}</td>
                                 <td>{item.losses}</td>
+                                <td>{item.last_match_time}</td>
                                 <td><Link to={`/catalog/${item.team_id}`}>{item.tag}</Link></td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div >
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    items: state.items.items
+    items: state.items.items,
+    sortType: state.items.sortType
 })
 
-export default connect(mapStateToProps, { setSortedItems })(CatalogItems);
+export default connect(mapStateToProps, { setSortedItems, setCurrentPage, setSortType })(CatalogItems);

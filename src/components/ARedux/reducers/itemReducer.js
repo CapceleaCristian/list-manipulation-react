@@ -1,13 +1,14 @@
-import { FETCH_ALL_ITEMS, FETCH_SINGLE_ITEM } from '../actions/types';
+import { FETCH_ALL_ITEMS, FETCH_SINGLE_ITEM, SET_ITEMS_AFTER_SEARCH } from '../actions/types';
 import { SEARCH_ITEM, SET_CURRENT_PAGE, SET_PREV_PAGE, SET_NEXT_PAGE } from '../actions/types';
 import { SET_ITEMS_PER_PAGE, SET_SORTED_ITEMS } from '../actions/types';
+import { SET_SORT_TYPE } from '../actions/types';
 import { RESET_STATE } from '../actions/types';
 
 const initialState = {
   text: '',
   items: [],
   item: {},
-  sortType: 'asc',
+  sortType: 'none',
   currentPage: 1,
   itemsPerPage: 200,
   totalItems: 0
@@ -56,8 +57,15 @@ export default function (state = initialState, action) {
         ...state,
         items: action.payload
       }
+    case SET_SORT_TYPE:
+      return {
+        ...state,
+        sortType: action.payload
+      }
     case RESET_STATE:
-      return initialState
+      return {
+        initialState
+      }
     default:
       return state;
   }

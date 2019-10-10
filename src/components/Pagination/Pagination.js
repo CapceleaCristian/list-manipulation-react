@@ -10,10 +10,11 @@ class Pagination extends Component {
 
    render() {
       const pageNumbers = [];
-      console.log(this.props.slicedItems / this.props.itemsPerPage)
-      for (let i = 1; i <= Math.ceil(this.props.slicedItems / this.props.itemsPerPage); i++) {
+
+      for (let i = 1; i <= Math.ceil(this.props.items.length / this.props.itemsPerPage); i++) {
          pageNumbers.push(i);
       }
+
       const changePage = (pageNumber) => {
          this.props.setCurrentPage(pageNumber)
       }
@@ -54,6 +55,7 @@ class Pagination extends Component {
 
 
 const mapStateToProps = (state) => ({
+   items: state.items.items,
    currentPage: state.items.currentPage,
    itemsPerPage: state.items.itemsPerPage
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { searchItem } from '../ARedux/actions/itemActions';
+import { searchItem, setCurrentPage } from '../ARedux/actions/itemActions';
 import './SearchBar.css';
 
 class SearchBar extends Component {
@@ -9,6 +9,7 @@ class SearchBar extends Component {
    //Search event set 
    onChange = (e) => {
       this.props.searchItem(e.target.value);
+      this.props.setCurrentPage(1);
    }
    render() {
       return (
@@ -30,4 +31,4 @@ const mapStatesToProps = (state) => ({
    text: state.items.text
 })
 
-export default connect(mapStatesToProps, { searchItem })(SearchBar);
+export default connect(mapStatesToProps, { searchItem, setCurrentPage })(SearchBar);
